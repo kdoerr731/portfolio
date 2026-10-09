@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Kendall Doerr | A Career Collection</title>
+<style>
+  :root { color-scheme:dark; box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); --bg:#101010; --panel:#181818; --muted:#b3b3b3; --red:#e50914; --white:#f5f5f1; }
+  html { scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px); background:#101010; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--white); font-family:Arial, Helvetica, sans-serif; }
+  a { color:inherit; }
+  .topbar { position:sticky; top:env(safe-area-inset-top,0px); z-index:10; display:flex; align-items:center; gap:28px; padding:17px 5vw; background:linear-gradient(180deg,rgba(0,0,0,.96),rgba(0,0,0,.78)); }
+  .logo { color:var(--red); font-size:clamp(1.4rem,3vw,2rem); font-weight:900; letter-spacing:-1.5px; text-decoration:none; }
+  nav { display:flex; flex-wrap:wrap; gap:18px; font-size:.9rem; color:#e5e5e5; }
+  nav a { text-decoration:none; opacity:.88; } nav a:hover { color:#fff; }
+  .hero { min-height:490px; padding:90px 7vw 60px; display:flex; align-items:center; background:linear-gradient(90deg,#101010 0%,rgba(16,16,16,.95) 27%,rgba(16,16,16,.55) 62%,rgba(16,16,16,.2) 100%),linear-gradient(0deg,#101010 0%,transparent 45%),radial-gradient(ellipse at 80% 25%,#4b3430 0%,#242020 28%,#101010 70%); }
+  .hero-content { max-width:760px; }
+  .eyebrow { color:#ddd; font-size:.78rem; font-weight:bold; letter-spacing:2px; text-transform:uppercase; }
+  h1 { margin:.25em 0; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.95; letter-spacing:-3px; }
+  .meta { display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; color:#ddd; font-size:.95rem; }
+  .match { color:#46d369; font-weight:bold; }
+  .hero p { max-width:640px; color:#e1e1e1; font-size:1.08rem; line-height:1.6; }
+  .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:25px; }
+  .btn { border:0; border-radius:4px; padding:12px 20px; font-weight:bold; font-size:1rem; cursor:pointer; text-decoration:none; display:inline-flex; gap:9px; align-items:center; }
+  .btn-primary { background:#f5f5f1; color:#111; } .btn-secondary { background:rgba(109,109,110,.7); color:#fff; }
+  .btn:hover { filter:brightness(.88); }
+  main { padding:0 5vw 60px; }
+  .section { margin:15px 0 42px; scroll-margin-top:90px; }
+  .section-head { display:flex; align-items:baseline; gap:12px; margin-bottom:15px; flex-wrap:wrap; }
+  h2 { margin:0; font-size:1.35rem; } .section-sub { color:var(--muted); font-size:.85rem; }
+  .row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:13px; }
+  .row.three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .tile { min-height:155px; position:relative; overflow:hidden; border-radius:5px; padding:20px; background:linear-gradient(135deg,var(--tile,#343434),#191919 78%); border:1px solid #333; transition:transform .18s ease,border-color .18s ease; }
+  .tile:hover { transform:translateY(-4px); border-color:#777; }
+  .tile .number { color:rgba(255,255,255,.38); font-size:2rem; font-weight:900; }
+  .tile h3 { margin:13px 0 7px; font-size:1.05rem; }
+  .tile p { margin:0; color:#ddd; font-size:.9rem; line-height:1.45; }
+  .feature { display:grid; grid-template-columns:1.2fr 1fr; gap:22px; padding:25px; border-radius:6px; background:var(--panel); border:1px solid #2b2b2b; }
+  .feature h3 { font-size:1.5rem; margin:0 0 10px; }
+  .feature p { color:#d0d0d0; line-height:1.55; margin:0; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; align-content:start; }
+  .chip { border:1px solid #454545; border-radius:3px; padding:8px 10px; color:#ddd; font-size:.85rem; background:#222; }
+  .contact { background:linear-gradient(110deg,#262626,#171717); border-radius:6px; padding:30px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+  .contact p { margin:7px 0 0; color:#ccc; }
+  footer { padding:25px 5vw 35px; color:#8a8a8a; font-size:.8rem; border-top:1px solid #242424; line-height:1.5; }
+  @media (max-width:850px) { .row, .row.three { grid-template-columns:repeat(2,minmax(0,1fr)); } .feature { grid-template-columns:1fr; } .hero { min-height:440px; padding-top:65px; } }
+  @media (max-width:520px) { .topbar { align-items:flex-start; flex-direction:column; gap:10px; } nav { gap:12px; font-size:.82rem; } .row, .row.three { grid-template-columns:1fr; } .tile { min-height:130px; } h1 { letter-spacing:-1.5px; } .hero { padding-left:6vw; padding-right:6vw; } main { padding-left:6vw; padding-right:6vw; } }
+
+  .episode-tile { cursor:pointer; text-align:left; color:inherit; font:inherit; width:100%; appearance:none; }
+  .episode-tile:focus-visible { outline:3px solid #fff; outline-offset:3px; }
+  .episode-tile::after { content:"▶  View episode"; display:inline-block; margin-top:15px; color:#fff; font-size:.78rem; font-weight:bold; opacity:.78; }
+  .modal-backdrop { position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(0,0,0,.78); backdrop-filter:blur(5px); }
+  .modal-backdrop.open { display:flex; }
+  .episode-modal { position:relative; width:min(760px,100%); max-height:min(88vh,900px); overflow:auto; background:#181818; border:1px solid #414141; border-radius:8px; box-shadow:0 24px 80px rgba(0,0,0,.65); }
+  .modal-banner { min-height:165px; padding:30px; display:flex; flex-direction:column; justify-content:end; background:linear-gradient(0deg,#181818 0%,rgba(24,24,24,.2) 100%),linear-gradient(135deg,var(--tile,#343434),#101010); }
+  .modal-banner .number { font-size:.85rem; color:#ddd; letter-spacing:2px; font-weight:bold; }
+  .modal-banner h2 { margin-top:10px; font-size:clamp(1.8rem,5vw,2.7rem); }
+  .modal-content { padding:0 30px 30px; }
+  .modal-content h3 { margin:23px 0 8px; font-size:1rem; }
+  .modal-content p, .modal-content li { color:#d2d2d2; line-height:1.6; }
+  .modal-content ul { padding-left:20px; }
+  .modal-close { position:absolute; top:14px; right:14px; z-index:2; border:0; border-radius:50%; width:40px; height:40px; background:#181818; color:#fff; font-size:1.45rem; cursor:pointer; }
+  .modal-close:hover { background:#333; }
+  .modal-hint { color:#8e8e8e; font-size:.8rem; margin-top:15px; }
+  body.modal-open { overflow:hidden; }
+  @media (max-width:520px) { .modal-backdrop { padding:10px; } .modal-banner { min-height:135px; padding:22px; } .modal-content { padding:0 22px 24px; } }
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="#home">MYFLIX</a>
+  <nav aria-label="Main navigation">
+    <a href="#highlights">Highlights</a><a href="#episodes">Career episodes</a><a href="#special-features">Special features</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">Kendall Doerr · A career collection</div>
+    <h1>The Knowledge<br>Architect</h1>
+    <div class="meta"><span class="match">6 years in KM</span><span>8 at PayPal/Venmo</span><span>Knowledge • AI • Governance</span></div>
+    <p>I structure support knowledge so people and AI assistants can use it, then build the standards and workflows that keep it accurate. Six years in knowledge management, all of it in fintech support.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#episodes">▶ Explore my story</a>
+      <a class="btn btn-secondary" href="#contact">ⓘ More about me</a>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="section" id="highlights">
+    <div class="section-head"><h2>Because you’re building a governance function</h2><span class="section-sub">Four reasons to press play</span></div>
+    <div class="row">
+      <article class="tile" style="--tile:#3c2426"><div class="number">01</div><h3>Structure that scales</h3><p>Venmo’s 400-article internal KB, with an organization standard on 80% of pages.</p></article>
+      <article class="tile" style="--tile:#263b38"><div class="number">02</div><h3>AI with guardrails</h3><p>Claude agents that help authors write to brand voice and flag legal risks before formal review.</p></article>
+      <article class="tile" style="--tile:#292b47"><div class="number">03</div><h3>Influence without authority</h3><p>Standards adopted through research and working examples, not reporting lines.</p></article>
+      <article class="tile" style="--tile:#443321"><div class="number">04</div><h3>End-user empathy</h3><p>Written for teammates who can’t see the app experience their customers have.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="episodes">
+    <div class="section-head"><h2>Career episodes</h2><span class="section-sub">Selected projects from the collection</span></div>
+    <div class="row three">
+      <button class="tile episode-tile" type="button" data-episode="1" style="--tile:#3b2222" aria-haspopup="dialog" aria-controls="episodeModal"><div class="number">S1 · E1</div><h3>The Knowledge Base</h3><p>400 internal articles. An organization standard on 80% of pages, including an up-to-speed section for teammates.</p></button>
+      <button class="tile episode-tile" type="button" data-episode="2" style="--tile:#1f3b37" aria-haspopup="dialog" aria-controls="episodeModal"><div class="number">S1 · E2</div><h3>The Agents</h3><p>Claude agents designed and deployed to write to brand voice, flag legal red flags, optimize for SEO and AEO, and componentize content for the CMS.</p></button>
+      <button class="tile episode-tile" type="button" data-episode="3" style="--tile:#2a2c49" aria-haspopup="dialog" aria-controls="episodeModal"><div class="number">S1 · E3</div><h3>The Cleanup</h3><p>Four months of usage data across 3,000+ support scripts. 85% of low-value content retired before the move to a new platform.</p></button>
+      <button class="tile episode-tile" type="button" data-episode="4" style="--tile:#443321" aria-haspopup="dialog" aria-controls="episodeModal"><div class="number">S1 · E4</div><h3>The Redesign</h3><p>Content updates for 144 components of the Venmo app redesign, prepared with an AI agent. 4-5 days of prep vs. an estimated 4 weeks.</p></button>
+      <button class="tile episode-tile" type="button" data-episode="5" style="--tile:#3b2a3a" aria-haspopup="dialog" aria-controls="episodeModal"><div class="number">S1 · E5</div><h3>The Big Migration</h3><p>215 Help Center articles remediated by a 3-person team after the CMS migration. Engagement up by 25%.</p></button>
+      <button class="tile episode-tile" type="button" data-episode="6" style="--tile:#233a2c" aria-haspopup="dialog" aria-controls="episodeModal"><div class="number">S1 · E6</div><h3>The Enablement Program</h3><p>12 weeks, 15 cross-functional teammates, about 180 hours saved across 26 success stories.</p></button>
+    </div>
+  </section>
+
+  <section class="section" id="special-features">
+    <div class="section-head"><h2>Special features</h2><span class="section-sub">What I bring to the next season</span></div>
+    <div class="feature">
+      <div><h3>The sweet spot: clarity at scale</h3><p>I’m at my best where scattered knowledge, real user needs, and AI tools meet. I make content more useful today and build the structure that keeps it useful tomorrow.</p></div>
+      <div class="chips">
+        <span class="chip">Knowledge Management</span><span class="chip">Information Architecture</span><span class="chip">Content Governance</span><span class="chip">Taxonomy</span><span class="chip">AI-Ready Content</span><span class="chip">Prompt Engineering</span><span class="chip">SEO &amp; AEO</span><span class="chip">Confluence</span><span class="chip">Contentful</span><span class="chip">Zendesk</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="contact">
+      <div><h2>Ready for the next episode?</h2><p>Let’s talk about how knowledge governance should work for Talent.</p><p>Kendall Doerr · <a href="mailto:kdoerr731@gmail.com">kdoerr731@gmail.com</a> · <a href="https://www.linkedin.com/in/ka-doerr" target="_blank" rel="noopener">linkedin.com/in/ka-doerr</a></p></div>
+      <a class="btn btn-primary" href="mailto:kdoerr731@gmail.com">✉ Get in touch</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <div>MYFLIX · A career collection by Kendall Doerr · An independent creative profile, not affiliated with or endorsed by Netflix.</div>
+</footer>
+
+<div class="modal-backdrop" id="episodeModal" role="presentation">
+  <section class="episode-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+    <button class="modal-close" type="button" aria-label="Close episode">×</button>
+    <div class="modal-banner" id="modalBanner">
+      <div class="number" id="modalEpisodeNumber">S1 · EPISODE</div>
+      <h2 id="modalTitle">Episode title</h2>
+    </div>
+    <div class="modal-content">
+      <h3>The challenge</h3><p id="modalChallenge"></p>
+      <h3>My approach</h3><p id="modalApproach"></p>
+      <h3>Impact</h3><p id="modalImpact"></p>
+      <h3>Why it matters for Netflix</h3><p id="modalRelevance"></p>
+      <p class="modal-hint">Use this story as a conversation starter; supporting details can be discussed in an interview.</p>
+    </div>
+  </section>
+</div>
+<script>
+const episodeDetails = {
+  1: {
+    title: "The Knowledge Base", color: "#3b2222",
+    challenge: "The Venmo internal KB grew with the platform, and the teammates who use it can\u2019t see the app experience customers have, so they need key context fast.",
+    approach: "Owns the KB content and expanded its original structure with an organization standard, including an up-to-speed section and simplified processes, across 80% of its 400 articles.",
+    impact: "CS teammates report the KB is more informative and easier to navigate than PayPal\u2019s system. In internal testing, an AI assistant answers policy questions accurately from it, and the approach is being pushed for replication across other brands.",
+    relevance: "Shows how a shared structure can be extended as a knowledge estate grows, and how a working example can carry a standard to other business units."
+  },
+  2: {
+    title: "The Agents", color: "#1f3b37",
+    challenge: "Authors write for multiple brands and markets, each with its own rules, and spent significant time drafting content, checking it against brand, legal, and search guidance, and assembling it for the CMS.",
+    approach: "Designed and deployed Claude agents that write to brand voice, flag legal red flags with rationale, recommend SEO and AEO improvements, and componentize approved content for CMS loading. Human-in-the-loop by design: the agents draft and give feedback, authors decide, and formal review still happens.",
+    impact: "Authors now work from one consistent standard, and time spent drafting content and assembling it for the CMS is down 50%.",
+    relevance: "Shows how to operationalize AI inside authoring workflows: standards built into the tools, people in the loop, and less manual assembly."
+  },
+  3: {
+    title: "The Cleanup", color: "#2a2c49",
+    challenge: "A large library of support scripts needed to be evaluated before moving to a new platform.",
+    approach: "Analyzed four months of usage data across 3,000+ support scripts to identify low-value content, then refined the high-impact scripts that support 160K+ monthly customer interactions.",
+    impact: "Retired 85% of the low-value content before the move, so there was far less to migrate and maintain, and the scripts that matter most were sharper.",
+    relevance: "Illustrates evidence-based content lifecycle decisions, reducing stale or redundant material before it moves into a new system."
+  },
+  4: {
+    title: "The Redesign", color: "#443321",
+    challenge: "The Venmo app redesign touched 144 content components. The hard part was working out what changed, which function moved where, and which content refers to it, while aligning with three separate PMs and product teams, with about 1.5 months of runway and other projects running.",
+    approach: "Used an AI agent that read PRDs and design files to learn the new UI, rewrote each content component needing edits, and tracked and assigned the work between two authors.",
+    impact: "Prep took 4\u20135 days against an estimated four weeks. All 144 content updates are loaded into the CMS in draft mode, ready to publish at the 50% ramp.",
+    relevance: "Shows speed and structure under ambiguity: a defined workflow, shared tracking, and a clear way to keep authors, content, and three product teams aligned."
+  },
+  5: {
+    title: "The Big Migration", color: "#3b2a3a",
+    challenge: "After the CMS migration, 215 Help Center articles had to be manually rebuilt into the correct multi-component structure.",
+    approach: "Captained a three-person team and drove the decision to review and rewrite all content concurrently, so the required manual effort also improved quality.",
+    impact: "Help Center engagement went up by 25%. The same reviews and rewrites also improved the content\u2019s effectiveness for the new AI assistant layered on top of it.",
+    relevance: "Shows migration execution, content quality work, and decision-making about how to spend limited manual effort."
+  },
+  6: {
+    title: "The Enablement Program", color: "#233a2c",
+    challenge: "Cross-functional teammates needed practical ways to use AI in everyday work, and the team\u2019s needs weren\u2019t yet documented.",
+    approach: "Started with a team case study to understand needs, designed the curriculum, and hosted weekly sessions: tool primers, prompting frameworks, real application examples, use cases in content management, project management, and strategy and analysis, complete content workflows, and personal optimizations.",
+    impact: "The team saved about 180 hours of work using AI across 26 success stories, and participants reported 50%+ time savings on AI-assisted tasks.",
+    relevance: "Shows how to build capability across teams without a reporting line, which is how a governance function gets adopted."
+  }
+};
+const backdrop = document.getElementById('episodeModal');
+const dialog = backdrop.querySelector('.episode-modal');
+const closeButton = backdrop.querySelector('.modal-close');
+let previousFocus = null;
+
+function openEpisode(id, trigger) {
+  const item = episodeDetails[id];
+  if (!item) return;
+  previousFocus = trigger;
+  document.getElementById('modalEpisodeNumber').textContent = `S1 · EPISODE ${id}`;
+  document.getElementById('modalTitle').textContent = item.title;
+  document.getElementById('modalChallenge').textContent = item.challenge;
+  document.getElementById('modalApproach').textContent = item.approach;
+  document.getElementById('modalImpact').textContent = item.impact;
+  document.getElementById('modalRelevance').textContent = item.relevance;
+  document.getElementById('modalBanner').style.setProperty('--tile', item.color);
+  backdrop.classList.add('open');
+  document.body.classList.add('modal-open');
+  closeButton.focus();
+}
+function closeEpisode() {
+  backdrop.classList.remove('open');
+  document.body.classList.remove('modal-open');
+  if (previousFocus) previousFocus.focus();
+}
+document.querySelectorAll('.episode-tile').forEach(tile => {
+  tile.addEventListener('click', () => openEpisode(tile.dataset.episode, tile));
+});
+closeButton.addEventListener('click', closeEpisode);
+backdrop.addEventListener('click', event => { if (event.target === backdrop) closeEpisode(); });
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && backdrop.classList.contains('open')) closeEpisode();
+  if (event.key === 'Tab' && backdrop.classList.contains('open')) {
+    event.preventDefault();
+    closeButton.focus();
+  }
+});
+</script>
+
+</body>
+</html>
